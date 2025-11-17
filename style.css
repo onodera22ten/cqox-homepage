@@ -1,0 +1,305 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #a855f7;
+    --accent-color: #ec4899;
+    --bg-dark: #0f172a;
+    --bg-darker: #020617;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 900px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.logo-section {
+    margin-bottom: 2rem;
+}
+
+.logo {
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 8s ease infinite;
+    margin-bottom: 0.5rem;
+}
+
+.logo-line {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    margin: 0 auto;
+    border-radius: 2px;
+    animation: expandLine 1.5s ease-out;
+}
+
+.tagline {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.3s forwards;
+}
+
+.description {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.6s forwards;
+}
+
+.countdown {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2rem);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 3rem 0;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.9s forwards;
+}
+
+.time-box {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    min-width: clamp(100px, 15vw, 140px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.time-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.time-box:hover {
+    transform: translateY(-5px);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+}
+
+.time-box:hover::before {
+    transform: scaleX(1);
+}
+
+.time {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.label {
+    font-size: clamp(0.7rem, 1.5vw, 0.875rem);
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+}
+
+.launch-date {
+    margin: 2rem 0;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.2s forwards;
+}
+
+.launch-date p {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--text-secondary);
+}
+
+.date-highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.5s forwards;
+}
+
+.social-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.background-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0) 70%);
+    filter: blur(40px);
+    animation: float 20s ease-in-out infinite;
+}
+
+.circle-1 {
+    width: 500px;
+    height: 500px;
+    top: -250px;
+    right: -250px;
+    animation-delay: 0s;
+}
+
+.circle-2 {
+    width: 400px;
+    height: 400px;
+    bottom: -200px;
+    left: -200px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0) 70%);
+    animation-delay: 5s;
+}
+
+.circle-3 {
+    width: 350px;
+    height: 350px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0) 70%);
+    animation-delay: 10s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes expandLine {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100px;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    33% {
+        transform: translate(30px, -30px);
+    }
+    66% {
+        transform: translate(-20px, 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .countdown {
+        gap: 1rem;
+    }
+
+    .time-box {
+        min-width: 80px;
+        padding: 1rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
